@@ -1,0 +1,62 @@
+Create a table named "testing_table" with following fields:
+
+name (string)
+contact_name (string)
+roll_no (string)
+
+mysql> USE Vinsoltest;
+Database changed
+mysql> CREATE TABLE Testing_Table( Name VARCHAR(60) NOT NULL,
+    -> Contact_Name VARCHAR(60) NOT NULL,
+    -> Roll_no VARCHAR(60) NOT NULL)
+    -> ;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DESCRIBE Testing_Table;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Name         | varchar(60) | NO   |     | NULL    |       |
+| Contact_Name | varchar(60) | NO   |     | NULL    |       |
+| Roll_no      | varchar(60) | NO   |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+Now:
+
+Delete column name, rename contact_name to username. Add two fields first_name, last_name. Also change the type of roll_no to integer
+
+mysql> ALTER TABLE Testing_Table
+    -> DROP COLUMN Name;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Testing_Table
+    -> ADD COLUMN Fname VARCHAR(60) NOT NULL;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Testing_Table
+    -> ADD COLUMN Lname VARCHAR(60) NOT NULL;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Testing_Table
+    -> MODIFY Roll_no SMALLINT UNSIGNED NOT NULL;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Testing_Table
+    -> CHANGE Contact_Name Username VARCHAR(60);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE Testing_Table;
++----------+----------------------+------+-----+---------+-------+
+| Field    | Type                 | Null | Key | Default | Extra |
++----------+----------------------+------+-----+---------+-------+
+| Username | varchar(60)          | YES  |     | NULL    |       |
+| Roll_no  | smallint(5) unsigned | NO   |     | NULL    |       |
+| Fname    | varchar(60)          | NO   |     | NULL    |       |
+| Lname    | varchar(60)          | NO   |     | NULL    |       |
++----------+----------------------+------+-----+---------+-------+
+4 rows in set (0.05 sec)
